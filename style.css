@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html, body{
+    height: 100%;
+}
+body{
+    background-color: darkslategray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.navbar, .container{
+    background-color: black;
+    width: 800px;
+    border-radius: 3px;
+    
+    
+}
+.navbar {
+    padding: 1em;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.btn, input{
+    height: 35px;
+    padding: 0 1em;
+
+}
+.color{
+    padding: 0 .25em;
+    width: 100px;
+    margin: 1em;
+}
+.container{
+    height: 800px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 1px;
+}
+.pixel{
+    background-color: white;
+}

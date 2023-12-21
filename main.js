@@ -33,10 +33,11 @@ function populate(size) {
   }
 }
 
-window.addEventListener("mousedown", function () {
+container.addEventListener("mousedown", function (event) {
+  event.preventDefault()
   draw = true;
 });
-window.addEventListener("mouseup", function () {
+container.addEventListener("mouseup", function () {
   draw = false;
 });
 

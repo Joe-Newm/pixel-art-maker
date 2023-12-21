@@ -65,7 +65,6 @@ sizeEl.addEventListener("mouseup", function () {
 });
 
 //grid toggle
-
 gridBtn.addEventListener("click", function () {
   changePixelStyle();
 });

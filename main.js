@@ -19,8 +19,9 @@ function populate(size) {
   for (let i = 0; i < size * size; i++) {
     const div = document.createElement("div");
     div.classList.add("pixel");
-    div.style.border = "1px solid";
-    div.style.borderColor = "gray";
+    div.classList.add('border-toggle')
+    
+    
 
     div.addEventListener("mouseover", function () {
       if (!draw) return;
@@ -67,14 +68,13 @@ container.addEventListener("mouseup", function () {
   draw = false;
 });
 
+// toggle grid
 function changePixelStyle() {
   const pixels = document.querySelectorAll(".pixel");
   pixels.forEach((pixel) => {
     // Modify the style of each pixel element
-    pixel.style.border = `${pixelStyle}px solid`;
-    pixel.style.borderColor = "gray";
+    pixel.classList.toggle('border-toggle')
   });
-  // Add any other style modifications as needed
   pixelStyle = pixelStyle === 0 ? 1 : 0;
 }
 

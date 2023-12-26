@@ -21,6 +21,7 @@ function populate(size) {
     div.classList.add("pixel");
     div.classList.add('border-toggle')
     
+    // Draw event listener
     div.addEventListener("mouseover", function () {
       if (!draw) return;
       div.style.backgroundColor = color.value;
@@ -28,10 +29,21 @@ function populate(size) {
     div.addEventListener("mousedown", function () {
       div.style.backgroundColor = color.value;
     });
+    // Fill bucket event listener
+    div.addEventListener('click', () => {
+    const fillButtonActivated = fillBtn.classList.contains("button-activated");
 
-    container.appendChild(div);
+    // If the fill button is activated, perform the flood fill
+    if (fillButtonActivated) {
+      const startPixelIndex = 0;  // You may want to adjust the starting pixel based on user selection
+      const newColor = color.value;  // Get the color from the color input
+
+    // Call the flood fill function
+    floodFill(startPixelIndex, newColor);
   }
-}
+})
+  container.appendChild(div);
+}}
 
 function saveAsImage() {
   // Use html2canvas to capture the content of the container
@@ -58,7 +70,11 @@ function saveAsImage() {
 
 container.addEventListener("mousedown", function (event) {
   event.preventDefault()
+  if (fillBtn.classList.contains("button-activated")) {
+  draw = false;
+  } else {
   draw = true;
+  }
 });
 container.addEventListener("mouseup", function () {
   draw = false;
@@ -81,6 +97,30 @@ function reset() {
   populate(size);
 }
 
+// flood fill function
+function floodFill(startPixel, newColor) {
+  const pixels = document.querySelectorAll(".pixel");
+  const originalColor = pixels[startPixel].style.backgroundColor;
+
+  function fill(pixelIndex) {
+    const pixel = pixels[pixelIndex];
+    if (!pixel || pixel.style.backgroundColor !== originalColor || pixel.style.backgroundColor === newColor) {
+      return;
+    }
+
+    // Fill the current pixel with the new color
+    pixel.style.backgroundColor = newColor;
+
+    fill(pixelIndex + 1);     // Right neighbor
+    fill(pixelIndex - 1);     // Left neighbor
+    fill(pixelIndex + size);  // Bottom neighbor
+    fill(pixelIndex - size);  // Top neighbor
+  }
+
+  // Start the flood fill from the clicked pixel
+  fill(startPixel);
+}
+
 
 
 
@@ -90,14 +130,16 @@ saveBtn.addEventListener("click", saveAsImage)
 // fill button event listener
 fillBtn.addEventListener("click", () => {
   fillBtn.classList.toggle("button-activated")
-})
+  })
+
+
 
 //reset button event listener
 resetBtn.addEventListener("click", reset);
 
-// Slider event listener
 // get value of the size input
 let size = sizeEl.value;
+// Slider event listener
 sizeEl.addEventListener("mouseup", function () {
   size = sizeEl.value;
   reset();

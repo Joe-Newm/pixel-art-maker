@@ -52,6 +52,7 @@ button {
   background-color:  rgb(36, 48, 65);
   color: rgb(205, 215, 247);
   font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+  cursor:pointer;
 }
 
 .label {
@@ -68,8 +69,6 @@ button {
     border: 1px solid rgb(100, 177, 255);
     width: 35%;
     margin-bottom: 10px;
-    
-  
 }
 
 .container {
@@ -97,4 +96,18 @@ button {
 .border-toggle {
   border: 1px solid;
   border-color: gray;
+}
+
+.toggle-buttons {
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+}
+
+.button-activated {
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+  background-color:rgb(9, 132, 255) ;
+  color:rgb(36, 48, 65);
 }

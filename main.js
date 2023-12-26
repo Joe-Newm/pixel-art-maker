@@ -3,15 +3,15 @@ const sizeEl = document.querySelector(".size");
 const color = document.querySelector(".color");
 const resetBtn = document.querySelector(".btn");
 const gridBtn = document.querySelector(".toggle-grid");
-const saveBtn = document.querySelector(".save-image")
+const saveBtn = document.querySelector(".save-image");
+const fillBtn = document.querySelector(".toggle-buttons")
 
-let pixelStyle = 0;
-
-// get value of the size input
-let size = sizeEl.value;
 
 // only draw pixels if variable is true
 let draw = false;
+
+
+
 
 function populate(size) {
   // update the --size CSS variable
@@ -21,8 +21,6 @@ function populate(size) {
     div.classList.add("pixel");
     div.classList.add('border-toggle')
     
-    
-
     div.addEventListener("mouseover", function () {
       if (!draw) return;
       div.style.backgroundColor = color.value;
@@ -58,8 +56,6 @@ function saveAsImage() {
   });
 }
 
-saveBtn.addEventListener("click", saveAsImage)
-
 container.addEventListener("mousedown", function (event) {
   event.preventDefault()
   draw = true;
@@ -68,7 +64,8 @@ container.addEventListener("mouseup", function () {
   draw = false;
 });
 
-// toggle grid
+// toggle grid Function
+let pixelStyle = 0;
 function changePixelStyle() {
   const pixels = document.querySelectorAll(".pixel");
   pixels.forEach((pixel) => {
@@ -78,20 +75,35 @@ function changePixelStyle() {
   pixelStyle = pixelStyle === 0 ? 1 : 0;
 }
 
-//reset button function and listener
+// reset function
 function reset() {
   container.innerHTML = "";
   populate(size);
 }
+
+
+
+
+// save button event listener
+saveBtn.addEventListener("click", saveAsImage)
+
+// fill button event listener
+fillBtn.addEventListener("click", () => {
+  fillBtn.classList.toggle("button-activated")
+})
+
+//reset button event listener
 resetBtn.addEventListener("click", reset);
 
-// Slider function
+// Slider event listener
+// get value of the size input
+let size = sizeEl.value;
 sizeEl.addEventListener("mouseup", function () {
   size = sizeEl.value;
   reset();
 });
 
-//grid toggle
+//grid event listener
 gridBtn.addEventListener("click", function () {
   changePixelStyle();
 });

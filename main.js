@@ -28,6 +28,7 @@ function populate(size) {
     });
     div.addEventListener("mousedown", function () {
       div.style.backgroundColor = color.value;
+      
     });
     // Fill bucket event listener
     div.addEventListener('click', () => {
@@ -75,6 +76,7 @@ container.addEventListener("mousedown", function (event) {
   } else {
   draw = true;
   }
+  
 });
 container.addEventListener("mouseup", function () {
   draw = false;
@@ -120,8 +122,6 @@ function floodFill(startPixel, newColor) {
   // Start the flood fill from the clicked pixel
   fill(startPixel);
 }
-
-
 
 
 // save button event listener
